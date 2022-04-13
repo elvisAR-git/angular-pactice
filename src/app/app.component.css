@@ -1,0 +1,32 @@
+.quotes {
+  border-radius: 5px;
+  padding: 50px;
+  margin-bottom: 20px;
+  /* center everything */
+  margin: 0 auto;
+  /* fixed scroll */
+  overflow-y: scroll;
+  /* height */
+  height: 600px;
+}
+
+
+.title {
+  font-size: 30px;
+  font-weight: bolder;
+  color: rgb(169, 169, 170);
+  text-align: center;
+
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  margin-bottom: 20px;
+}
+
+.title-bigger {
+  font-size: 60px;
+  font-weight: bolder;
+  color: rgb(170, 170, 170);
+  /* text shadow */
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  text-align: center;
+  margin-bottom: 20px;
+}

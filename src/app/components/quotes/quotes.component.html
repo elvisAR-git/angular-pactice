@@ -1,24 +1,70 @@
+<div class="container">
+  <app-quote-form (addQuote)="addNewQuote($event)"></app-quote-form>
+  <br>
+  <p class="subtitle">Showing {{quotes.length}} quotes</p>
+  <ul *ngFor="let quote of quotes">
 
+    <div
+      *ngIf="(quote.upvote-quote.downvote)> 0 && (quote.upvote-quote.downvote) == maxPerformanceIndex; then highlight else empty">
 
-
-<app-quote-form (addQuote)="addNewQuote($event)"></app-quote-form>
-
-<ul *ngFor="let quote of quotes">
-
-    <div *ngIf="quote.upvote==highest && quote.upvote>0; then highlight else empty">
-        
     </div>
     <ng-template #highlight>
-        <li appHighlight> <h3>{{quote.author}}</h3><br> <p>{{quote.quote}}</p><br><p>Submitted by: {{ quote.submittedby}}  </p> <button>{{quote.upvote}}</button> <button>{{quote.downvote}}</button> </li>
+      <mat-card appHighlight>
+        <mat-card-title>
+          <p class="title">{{quote.author}} </p>
+        </mat-card-title>
+        <mat-card-content>
+          <code>
+            <pre>
+            "{{quote.quote}}"
+            </pre>
+          </code>
+
+          <i>{{ quote.submittedby}} </i>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button (click)="upvoteQuote(quote)">
+            {{quote.upvote}}
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button mat-icon-button (click)="downvoteQuote(quote)">
+            {{quote.downvote}}
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </ng-template>
     <ng-template #empty>
-        <li> <h3>{{quote.author}}</h3><br> <p>{{quote.quote}}</p><br><p>Submitted by: {{ quote.submittedby}}  </p> <button>{{quote.upvote}}</button> <button>{{quote.downvote}}</button> </li>
+      <mat-card>
+        <mat-card-title>
+          <p class="title">{{quote.author}} </p>
+        </mat-card-title>
+        <mat-card-content>
+
+          <code>
+            <pre>
+            "{{quote.quote}}"
+            </pre>
+          </code>
+
+          <i>{{ quote.submittedby}} </i>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="upvoteQuote(quote)" mat-icon-button>
+            {{quote.upvote}}
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button (click)="downvoteQuote(quote)" mat-icon-button>
+            {{quote.downvote}}
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </ng-template>
 
-    
-</ul>
 
+  </ul>
 
-
-
-
+</div>

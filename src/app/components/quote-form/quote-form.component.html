@@ -1,18 +1,47 @@
-<button (click)='toggleform()' class="btn btn-success">Add Quote</button>
+<div class="container">
+  <div class="center">
+    <button class="add-btn" mat-raised-button (click)='toggleform()'>
+      <mat-icon>add_circle_outline</mat-icon> Add Quote
+    </button>
+  </div>
+  <br>
+  <br>
+  <mat-card *ngIf="showform" class="add-form">
 
+    <mat-card-header>
+      <mat-card-title>Add a new quote</mat-card-title>
+    </mat-card-header>
+    <br>
+    <mat-card-content>
+      <form [formGroup]="addQuoteForm" (ngSubmit)="submitQuote()">
 
-<form #form='ngForm' *ngIf="showform" (ngSubmit)="submitQuote()">
-    <div class="form-group">
-      <label for="name">Your Name</label>
-      <input  type="text" class="form-control" id="submittedby" name="submittedby" value="" required #name='ngModel' [(ngModel)]="submittedby" >
-    </div>
-    <div class="form-group">
-      <label for="quote">Quote</label>
-      <textarea type="textarea" class="form-control" id="quote" name="quote" rows="3" value="" required #name='ngModel' [(ngModel)]="quote"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="author">Author</label>
-      <input type="text" class="form-control" id="author" name="author" value="" required #name='ngModel' [(ngModel)]="author">
-    </div>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="submittedby" placeholder="Your name" />
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Quote</mat-label>
+          <textarea matInput formControlName="quote" placeholder="Your quote"></textarea>
+        </mat-form-field>
+
+        <br>
+        <br>
+
+        <!-- author -->
+        <mat-form-field appearance="fill">
+          <mat-label>Author</mat-label>
+          <input matInput type="text" formControlName="author" placeholder="Author" />
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" class="add-btn-small">
+          <mat-icon>save</mat-icon>
+          Save changes
+        </button>
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

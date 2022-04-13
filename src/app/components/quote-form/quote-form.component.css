@@ -1,0 +1,29 @@
+mat-form-field {
+  width: 100%;
+}
+
+
+.center {
+  text-align: center;
+  /* center everything */
+  margin: 0 auto;
+}
+
+
+.add-form {
+  padding: 20px !important;
+}
+
+.add-btn {
+  width: 20%;
+  padding: 10px !important;
+  font-size: 20px;
+  background-color: rgb(38, 61, 38);
+}
+
+
+.add-btn-small {
+  padding: 10px !important;
+  font-size: 16px;
+  background-color: rgb(38, 61, 38);
+}

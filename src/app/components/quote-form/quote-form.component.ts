@@ -1,5 +1,6 @@
 import { Quote } from './../../quote';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-quote-form',
@@ -7,30 +8,43 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./quote-form.component.css']
 })
 export class QuoteFormComponent implements OnInit {
-  
+
   showform: boolean = false;
-  quotes: any;
   toggleform() {
     this.showform = !this.showform;
   }
 
   newQuote!: Quote;
-  submittedby!: string;
-  quote!: string;
-  author!: string;
-  
+
+  addQuoteForm = this.builder.group(
+    {
+      submittedby: ['', [Validators.required, Validators.minLength(3)]],
+      quote: ['', [Validators.required, Validators.minLength(3)]],
+      author: ['', [Validators.required, Validators.minLength(3)],],
+    }
+  );
+
+
   @Output() addQuote = new EventEmitter<Quote>();
 
   submitQuote() {
-    this.newQuote = new Quote(0, this.submittedby, this.quote, this.author, 0, 0);
-    this.addQuote.emit(this.newQuote)
-    console.log(this.newQuote)
+    if (this.addQuoteForm.valid) {
+      console.log(this.addQuoteForm.value);
+
+
+      this.addQuote.emit(this.addQuoteForm.value);
+
+      // clear form
+      this.addQuoteForm.reset();
+      // close form
+      this.showform = false;
+    }
   }
 
-  
-  
 
-  constructor() { }
+
+
+  constructor(private builder: FormBuilder) { }
 
   ngOnInit(): void {
   }
